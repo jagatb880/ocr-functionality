@@ -21,4 +21,18 @@ export class OcrService {
         });
     });
   }
+
+  recognizeImage(text: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      Tesseract.recognize(text, 'eng', {
+        logger: (m) => console.log(m), // Optional: Logs progress
+      })
+        .then(({ data: { text } }) => {
+          resolve(text);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
 }

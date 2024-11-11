@@ -15,14 +15,29 @@ export class AppComponent {
   docxContent: string = '';
   selectedText: string = '';
 
+  isLoading: boolean = false;
+
   constructor(private ocrService: OcrService) {}
 
   onFileSelected(event: Event): void {
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files && fileInput.files[0]) {
-      const docxFile = fileInput.files[0];
+      // const docxFile = fileInput.files[0];
+      const imageFile = fileInput.files[0];
 
-      this.convertDocxToHtml(docxFile);
+      //this.convertDocxToHtml(docxFile);
+      this.isLoading = true; // Start loading indicator
+
+      this.ocrService
+        .recognizeImage(imageFile)
+        .then((text) => {
+          this.selectedText = text;
+          this.isLoading = false; // Stop loading indicator
+        })
+        .catch((error) => {
+          console.error('Error recognizing text:', error);
+          this.isLoading = false; // Stop loading indicator
+        });
     }
   }
 

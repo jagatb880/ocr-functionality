@@ -1,7 +1,9 @@
 <!-- docx-ocr.component.html -->
 <div class="docx-ocr-container">
   <h2>Upload and Select Text from DOCX</h2>
-  <input type="file" (change)="onFileSelected($event)" accept=".docx" />
+
+  <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+  <!-- <input type="file" (change)="onFileSelected($event)" accept=".docx" /> -->
 
   <div *ngIf="docxContent" class="docx-viewer" (mouseup)="onTextSelect($event)">
     <div [innerHTML]="docxContent"></div>
