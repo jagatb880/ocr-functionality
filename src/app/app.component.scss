@@ -1,0 +1,19 @@
+/* docx-ocr.component.css */
+.docx-ocr-container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+.docx-viewer {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 1em;
+    max-height: 300px;
+    overflow-y: auto;
+    text-align: left;
+}
+
+h3 {
+    margin-top: 1em;
+}
